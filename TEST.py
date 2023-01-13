@@ -65,11 +65,9 @@ def preprocess_data():
 
     return model
 
-# Use Streamlit to create a sidebar for the user to input their data
-data = st.sidebar.text_input("Enter your data here")
 
 # Use the st.button function to create a button for the user to submit their data
-if st.button("Predict"):
+if uploaded_file is not None and st.button("Predict"):
     model = preprocess_data()
     # Use the model to make a prediction
     prediction = model.predict(data)
