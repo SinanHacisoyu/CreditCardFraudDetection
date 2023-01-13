@@ -57,10 +57,13 @@ def preprocess_data():
     return model
 
 
-# Use the st.button function to create a button for the user to submit their data
 if uploaded_file is not None and st.button("Predict"):
     model = preprocess_data()
+    # preprocess the entire dataset
+    x_all = data.drop(['Class'], axis=1)
+    x_all = sc.transform(x_all)
+    x_all = x_all.reshape(x_all.shape[0], x_all.shape[1], 1)
     # Use the model to make a prediction
-    prediction = model.predict(data)
+    prediction = model.predict(x_all)
     # Display the prediction to the user
     st.write("Prediction: ", prediction)
