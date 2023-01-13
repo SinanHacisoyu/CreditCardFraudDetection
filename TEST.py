@@ -5,12 +5,12 @@ import streamlit as st
 
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
-  df = pd.read_csv(uploaded_file)
+  data = pd.read_csv(uploaded_file)
   st.write(dataframe)
 
 def preprocess_data():
     # Existing code to import necessary libraries, import the dataset, and preprocess the data
-    data=pd.read_csv("C:/Users/User/Desktop/creditcard.csv")
+    # data=pd.read_csv("C:/Users/User/Desktop/creditcard.csv")
     data['Class'].value_counts()
     nonFraudData = data[data['Class']==0]
     fraudData = data[data['Class']==1]
