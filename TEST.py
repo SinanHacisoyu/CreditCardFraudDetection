@@ -5,10 +5,12 @@ from sklearn.preprocessing import StandardScaler
 from keras.models import Sequential
 from keras.layers import Conv1D,BatchNormalization,Dropout,Flatten,Dense
 
+sc=StandardScaler()
+
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
   data = pd.read_csv(uploaded_file)
-
+   
 def preprocess_data():
     data['Class'].value_counts()
     nonFraudData = data[data['Class']==0]
@@ -23,7 +25,7 @@ def preprocess_data():
 
     xtrain, xtest, ytrain, ytest = train_test_split(x, y, test_size = 0.25, random_state = 42)
 
-    sc=StandardScaler()
+    
     xtrain=sc.fit_transform(xtrain)
     xtest=sc.fit_transform(xtest)
 
