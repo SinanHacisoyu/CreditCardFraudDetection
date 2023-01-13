@@ -3,7 +3,7 @@ import pandas as pd
 
 def preprocess_data():
     # Existing code to import necessary libraries, import the dataset, and preprocess the data
-    data=pd.read_csv('/path/to/file/dhirajkumar612/credit-card-fraud-detection-different-models')
+    data=pd.read_csv('gs://credit_card_fraud_detection/archive3.zip')
     data['Class'].value_counts()
     nonFraudData = data[data['Class']==0]
     fraudData = data[data['Class']==1]
