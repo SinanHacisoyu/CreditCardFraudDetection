@@ -2,7 +2,7 @@ import streamlit as st
 
 def preprocess_data():
     # Existing code to import necessary libraries, import the dataset, and preprocess the data
-    data=pd.read_csv('C:/Users/User/Desktop/archive3.zip')
+    data=pd.read_csv('kaggle kernels output dhirajkumar612/credit-card-fraud-detection-different-models -p /path/to/dest')
     data['Class'].value_counts()
     nonFraudData = data[data['Class']==0]
     fraudData = data[data['Class']==1]
