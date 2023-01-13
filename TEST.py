@@ -10,7 +10,7 @@ if uploaded_file is not None:
 def preprocess_data():
     # Existing code to import necessary libraries, import the dataset, and preprocess the data
     # data=pd.read_csv("C:/Users/User/Desktop/creditcard.csv")
-    data.value_counts()
+    data['Class'].value_counts()
     nonFraudData = data[data['Class']==0]
     fraudData = data[data['Class']==1]
 
