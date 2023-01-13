@@ -1,33 +1,22 @@
 import streamlit as st
 import pandas as pd
-import streamlit as st
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from keras.models import Sequential
 from keras.layers import Conv1D,BatchNormalization,Dropout,Flatten,Dense
-
 
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
   data = pd.read_csv(uploaded_file)
 
 def preprocess_data():
-    # Existing code to import necessary libraries, import the dataset, and preprocess the data
-    # data=pd.read_csv("C:/Users/User/Desktop/creditcard.csv")
     data['Class'].value_counts()
     nonFraudData = data[data['Class']==0]
     fraudData = data[data['Class']==1]
 
-    nonFraudData.shape, fraudData.shape
-
     nonFraudDataSample = nonFraudData.sample(fraudData.shape[0])
 
-    nonFraudDataSample.shape
-
     balancedData = fraudData.append(nonFraudDataSample,ignore_index = True)
-    balancedData
-
-    balancedData['Class'].value_counts()
 
     x=balancedData.drop(['Class'], axis=1)
     y=balancedData.Class
@@ -44,9 +33,7 @@ def preprocess_data():
     ytrain=ytrain.to_numpy()
     ytest=ytest.to_numpy()
 
-    #Building the Model: Convolutional Neural Network
     model = Sequential()
-
     model.add(Conv1D(32, kernel_size=2, activation = 'relu',input_shape = xtrain[0].shape))
     model.add(BatchNormalization())
     model.add(Dropout(0.2))
