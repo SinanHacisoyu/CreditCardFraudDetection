@@ -1,6 +1,10 @@
 import streamlit as st
 import pandas as pd
 import streamlit as st
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from keras.models import Sequential
+from keras.layers import Conv1D,BatchNormalization,Dropout,Flatten,Dense
 
 
 uploaded_file = st.file_uploader("Choose a file")
