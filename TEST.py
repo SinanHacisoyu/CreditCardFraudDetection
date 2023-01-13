@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 
 def preprocess_data():
     # Existing code to import necessary libraries, import the dataset, and preprocess the data
