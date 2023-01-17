@@ -72,8 +72,12 @@ if uploaded_file is not None and st.button("Predict"):
     st.write("Dataset:")
     st.dataframe(prediction_df)
     # display the number of data points
-    fraud_indices = [i for i in range(len(x_all)) if prediction[i] > 0.5]
-    st.write("Number of data points: ", len(fraud_indices))
+    fraud_indices = [i for i in range(len(x_all)) if prediction[i] == 1]
+    fraud_data = data.iloc[fraud_indices]
+    st.write("Predicted Fraud Data Points:")
+    st.dataframe(fraud_data)
+    number_of_fraud_data = len(fraud_indices)
+    st.write("Number of data points predicted as fraud: ", number_of_fraud_data)
     # calculate the loss and accuracy
     loss, accuracy = model.evaluate(xtest, ytest, verbose=0)
     st.write("loss: ", loss)
