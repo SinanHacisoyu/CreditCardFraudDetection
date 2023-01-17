@@ -58,6 +58,7 @@ def preprocess_data():
 
 if uploaded_file is not None and st.button("Predict"):
     balancedData = preprocess_data()
+    st.write("Number of data points: ", len(x_all))
     st.write("Number of data points in the balanced data: ", balancedData.shape[0])
     # preprocess the entire dataset
     x_all = data.drop(['Class'], axis=1)
@@ -67,3 +68,4 @@ if uploaded_file is not None and st.button("Predict"):
     prediction = model.predict(x_all)
     # Display the prediction to the user
     st.write("Prediction: ", prediction)
+    st.write("Number of data points: ", len(prediction))
