@@ -23,7 +23,7 @@ def preprocess_data():
     x=balancedData.drop(['Class'], axis=1)
     y=balancedData.Class
 
-    xtrain, xtest, ytrain, ytest = train_test_split(x, y, test_size = 0.25, random_state = 42)
+    xtrain, xtest, ytrain, ytest = train_test_split(x, y, test_size = 0.3, random_state = 42)
 
     
     xtrain=sc.fit_transform(xtrain)
