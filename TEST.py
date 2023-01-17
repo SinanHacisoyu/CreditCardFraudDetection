@@ -67,18 +67,18 @@ if uploaded_file is not None and st.button("Predict"):
     x_all = x_all.reshape(x_all.shape[0], x_all.shape[1], 1)
     # Use the model to make a prediction
     prediction = model.predict(x_all)
-    # display the prediction
-    prediction_df = pd.DataFrame(prediction, columns=["prediction"])
-    st.write("Dataset:")
-    st.dataframe(prediction_df)
-    # display the number of data points
+    # display the number of dataset
+    st.write("Number of data points in the dataset: ", len(x_all))
+    
+    # display the number of fraud data points
     fraud_indices = [i for i in range(len(x_all)) if prediction[i] == 1]
     fraud_data = data.iloc[fraud_indices]
     st.write("Predicted Fraud Data Points:")
     st.dataframe(fraud_data)
     number_of_fraud_data = len(fraud_indices)
     st.write("Number of data points predicted as fraud: ", number_of_fraud_data)
-    # calculate the loss and accuracy
+    
+    # display the loss and accuracy
     loss, accuracy = model.evaluate(xtest, ytest, verbose=0)
     st.write("loss: ", loss)
     st.write("accuracy: ", accuracy)
