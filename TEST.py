@@ -7,7 +7,7 @@ from keras.layers import Conv1D,BatchNormalization,Dropout,Flatten,Dense
 
 sc=StandardScaler()
 
-uploaded_file = st.file_uploader("Choose a file")
+uploaded_file = st.file_uploader("Select your dataset to perform Credit Card Fraud Detection ")
 if uploaded_file is not None:
   data = pd.read_csv(uploaded_file)
    
@@ -68,6 +68,10 @@ if uploaded_file is not None and st.button("Predict"):
     # Use the model to make a prediction
     prediction = model.predict(x_all)
     
+    prediction_df = pd.DataFrame(prediction, columns=["prediction"])
+    st.write("Dataset:")
+    st.dataframe(prediction_df)
+    
     fraud_indices = [i for i in range(len(x_all)) if prediction[i] == 1]
     fraud_data = data.iloc[fraud_indices]
     st.write("Predicted Fraud Data Points:")
@@ -75,7 +79,11 @@ if uploaded_file is not None and st.button("Predict"):
     number_of_fraud_data = len(fraud_indices)
     st.write("Number of data points predicted as fraud: ", number_of_fraud_data)
     
+    loss, accuracy = model.evaluate(xtest, ytest, verbose=0)
+    st.write("Loss: ",loss)
+    st.write("Accuracy: ",accuracy)
+    
     # Display the prediction to the user
-    st.write("Number of data points before the prediction: ", len(x_all))
-    st.write("Prediction: ", prediction)
-    st.write("Number of data points: ", len(prediction))
+    # st.write("Number of data points before the prediction: ", len(x_all))
+   #  st.write("Prediction: ", prediction)
+    # st.write("Number of data points: ", len(prediction))
