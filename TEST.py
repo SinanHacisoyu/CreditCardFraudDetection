@@ -50,7 +50,7 @@ def preprocess_data():
 
     model.compile(optimizer = 'adam',loss = 'binary_crossentropy',metrics=['accuracy'])
 
-    model.fit(xtrain,ytrain, epochs=30, validation_data=(xtest,ytest))
+    model.fit(xtrain,ytrain, epochs=40, validation_data=(xtest,ytest))
 
     Prediction = model.predict(xtest)
     yPrediction = (Prediction>0.5)
