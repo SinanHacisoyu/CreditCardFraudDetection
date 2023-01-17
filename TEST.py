@@ -67,6 +67,10 @@ if uploaded_file is not None and st.button("Predict"):
     x_all = x_all.reshape(x_all.shape[0], x_all.shape[1], 1)
     # Use the model to make a prediction
     prediction = model.predict(x_all)
+    fraud_data = [x_all[i] for i in range(len(x_all)) if prediction[i] == 1]
+    st.write("Predicted Fraud Data Points: ", fraud_data)
+    number_of_fraud_data = sum(prediction)
+    st.write("Number of data points predicted as fraud: ", number_of_fraud_data)
     # Display the prediction to the user
     st.write("Number of data points before the prediction: ", len(x_all))
     st.write("Prediction: ", prediction)
