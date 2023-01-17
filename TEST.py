@@ -56,7 +56,7 @@ def preprocess_data():
     Prediction = model.predict(xtest)
     yPrediction = (Prediction>0.5)
 
-    return model
+    return model,xtrain, xtest, ytrain, ytest
 
 
 if uploaded_file is not None and st.button("Predict"):
