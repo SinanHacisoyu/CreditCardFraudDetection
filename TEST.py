@@ -68,4 +68,8 @@ if uploaded_file is not None and st.button("Predict"):
     # Use the model to make a prediction
     prediction = model.predict(x_all)
     # Display the prediction to the user
+    st.write("Number of data points before the prediction: ", len(x_all))
+    #It gives the number of data points in the balanced data that you have used for predictions.
+    st.write("Number of data points in the balanced data: ", balancedData.shape[0]) 
     st.write("Prediction: ", prediction)
+    st.write("Number of data points: ", len(prediction))
