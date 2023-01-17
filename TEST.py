@@ -25,6 +25,7 @@ def preprocess_data():
 
     xtrain, xtest, ytrain, ytest = train_test_split(x, y, test_size = 0.25, random_state = 42)
 
+    
     xtrain=sc.fit_transform(xtrain)
     xtest=sc.fit_transform(xtest)
 
@@ -54,12 +55,12 @@ def preprocess_data():
 
     Prediction = model.predict(xtest)
     yPrediction = (Prediction>0.5)
-    return balancedData
+
+    return model
+
 
 if uploaded_file is not None and st.button("Predict"):
-    balancedData = preprocess_data()
-    st.write("Number of data points: ", len(x_all))
-    st.write("Number of data points in the balanced data: ", balancedData.shape[0])
+    model = preprocess_data()
     # preprocess the entire dataset
     x_all = data.drop(['Class'], axis=1)
     x_all = sc.transform(x_all)
@@ -67,5 +68,6 @@ if uploaded_file is not None and st.button("Predict"):
     # Use the model to make a prediction
     prediction = model.predict(x_all)
     # Display the prediction to the user
+    st.write("Number of data points before the prediction: ", len(x_all))
     st.write("Prediction: ", prediction)
     st.write("Number of data points: ", len(prediction))
