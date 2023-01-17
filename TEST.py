@@ -60,30 +60,21 @@ def preprocess_data():
 
 
 if uploaded_file is not None and st.button("Predict"):
-    model = preprocess_data()
+    model, xtrain, xtest, ytrain, ytest = preprocess_data()
     # preprocess the entire dataset
     x_all = data.drop(['Class'], axis=1)
     x_all = sc.transform(x_all)
     x_all = x_all.reshape(x_all.shape[0], x_all.shape[1], 1)
     # Use the model to make a prediction
     prediction = model.predict(x_all)
-    
+    # display the prediction
     prediction_df = pd.DataFrame(prediction, columns=["prediction"])
     st.write("Dataset:")
     st.dataframe(prediction_df)
-    
-    fraud_indices = [i for i in range(len(x_all)) if prediction[i] == 1]
-    fraud_data = data.iloc[fraud_indices]
-    st.write("Predicted Fraud Data Points:")
-    st.dataframe(fraud_data)
-    number_of_fraud_data = len(fraud_indices)
-    st.write("Number of data points predicted as fraud: ", number_of_fraud_data)
-    
+    # display the number of data points
+    fraud_indices = [i for i in range(len(x_all)) if prediction[i] > 0.5]
+    st.write("Number of data points: ", len(fraud_indices))
+    # calculate the loss and accuracy
     loss, accuracy = model.evaluate(xtest, ytest, verbose=0)
-    st.write("Loss: ",loss)
-    st.write("Accuracy: ",accuracy)
-    
-    # Display the prediction to the user
-    # st.write("Number of data points before the prediction: ", len(x_all))
-   #  st.write("Prediction: ", prediction)
-    # st.write("Number of data points: ", len(prediction))
+    st.write("loss: ", loss)
+    st.write("accuracy: ", accuracy)
