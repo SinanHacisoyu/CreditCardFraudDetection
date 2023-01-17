@@ -25,7 +25,6 @@ def preprocess_data():
 
     xtrain, xtest, ytrain, ytest = train_test_split(x, y, test_size = 0.3, random_state = 42)
 
-    
     xtrain=sc.fit_transform(xtrain)
     xtest=sc.fit_transform(xtest)
 
@@ -57,7 +56,7 @@ def preprocess_data():
     yPrediction = (Prediction>0.5)
 
     return model,xtrain, xtest, ytrain, ytest
-
+  
 
 if uploaded_file is not None and st.button("Predict"):
     model, xtrain, xtest, ytrain, ytest = preprocess_data()
