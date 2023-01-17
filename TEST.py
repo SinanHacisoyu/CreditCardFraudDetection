@@ -62,20 +62,22 @@ def preprocess_data():
 if uploaded_file is not None and st.button("Predict"):
     model, xtrain, xtest, ytrain, ytest = preprocess_data()
     # preprocess the entire dataset
-    x_all = data.drop(['Class'], axis=1)
-    x_all = sc.transform(x_all)
-    x_all = x_all.reshape(x_all.shape[0], x_all.shape[1], 1)
+    x_all = data.drop(['Class'], axis=1) # Removing the 'Class' column from the dataframe.
+    x_all = sc.transform(x_all) # Applying the StandardScaler to the data
+    x_all = x_all.reshape(x_all.shape[0], x_all.shape[1], 1) # reshaping the data to match the input shape expected by the model
+    
     # Use the model to make a prediction
     prediction = model.predict(x_all)
+    
     # display the number of dataset
     st.write("Number of data points in the dataset: ", len(x_all))
     
     # display the number of fraud data points
-    fraud_indices = [i for i in range(len(x_all)) if prediction[i] == 1]
+    fraud_indices = [i for i in range(len(x_all)) if prediction[i] == 1] # Creates a list of indices of the data points that have been predicted as fraud by the model.
     fraud_data = data.iloc[fraud_indices]
-    st.write("Predicted Fraud Data Points:")
-    st.dataframe(fraud_data)
-    number_of_fraud_data = len(fraud_indices)
+    st.write("Predicted Fraud Data Points:") # Selects the rows of the original data (data) that correspond to the indices in the fraud_indices list
+    st.dataframe(fraud_data) # Display the dataframe containing the predicted fraud data points to the user
+    number_of_fraud_data = len(fraud_indices) # Calculates the number of fraud data points by getting the length of the fraud_ind
     st.write("Number of data points predicted as fraud: ", number_of_fraud_data)
     
     # display the loss and accuracy
