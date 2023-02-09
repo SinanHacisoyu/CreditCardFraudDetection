@@ -8,7 +8,7 @@ In the code, the CNN model consists of several convolutional and dense layers th
 
 The trained model is then used to make predictions on the entire dataset and the predicted fraud data points are displayed to the user. The performance of the model is evaluated in terms of accuracy and loss.
 
-Test.py
+Streamlit.io is used for the API part. The Test.py file does the same as the CreditCardFraudDetection.ipynb file and is used for the interface.
 
 Dataset:
 https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
