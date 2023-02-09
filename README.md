@@ -1,4 +1,4 @@
-# CreditCardFraudDetection
+# Credit Card Fraud Detection
 
 Credit Card Fraud Detection Performing CNN on the Credit Card Dataset, in order to determine if the transactions are fraud or not. Library Used: TensorFlow, Sklearn, Keras.
 
