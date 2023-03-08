@@ -12,9 +12,6 @@ if uploaded_file is not None:
   data = pd.read_csv(uploaded_file)
    
 def preprocess_data():
-  if 'Class' not in data:
-        st.write("Error: 'Class' column not found in the dataset")
-        return None, None, None, None, None
     data['Class'].value_counts()
     nonFraudData = data[data['Class']==0]
     fraudData = data[data['Class']==1]
